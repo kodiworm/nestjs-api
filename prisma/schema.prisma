@@ -14,10 +14,32 @@ datasource db {
 }
 
 model User {
-  id BigInt @default(autoincrement()) @id
-  username String
+  id Int @default(autoincrement()) @id
+  username String @unique
   password String
   created_at DateTime @default(now())
+  userSetting UserSetting?
+  posts Posts[]
 
   @@map(name: "users")
+}
+
+model UserSetting {
+  id Int @default(autoincrement()) @id
+  notifications_on Boolean
+  sms_enabled Boolean
+  user_id Int @unique
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("user_settings")
+}
+
+model Posts {
+  id Int @default(autoincrement()) @id
+  title String
+  description String
+  user_id Int 
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("posts")
 }

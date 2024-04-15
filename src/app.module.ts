@@ -5,7 +5,9 @@ import { User } from './typeorm/entities/User'
 import { UsersModule } from './users/users.module'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AuthModule } from './auth/auth.module'
-import { PrismaModule } from './prisma/prisma.module';
+import { PrismaModule } from './prisma/prisma.module'
+import { PeopleModule } from './people/people.module'
+import { PostsModule } from './posts/posts.module'
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { PrismaModule } from './prisma/prisma.module';
     AuthModule,
     UsersModule,
     PrismaModule,
+    PeopleModule,
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
